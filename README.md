@@ -49,6 +49,8 @@ Se hicieron cinco ejecuciones manuales. Una prueba detectó nombre incorrecto y 
 
 La planilla conserva registros ficticios de prueba, incluido el intento que detectó el error. No son pedidos reales. No se ejecutaron escenarios de carga, concurrencia, fallos del proveedor ni pruebas con clientes reales.
 
-## Pendiente de entrega
+## Estado de entrega
 
-Publicar este contenido en el repositorio público pedido por la consigna y compartir ese enlace en Coderhouse. Este paquete no se ha publicado ni enviado a Ticher. La publicación debe revisarse antes de realizarse.
+Repositorio público habilitado con autorización de Karla el 25 de noviembre de 2026. El enlace se envió en la Pre-entrega 1 de Coderhouse. La plataforma confirmó «Entregado» y «En corrección»; Ticher está generando la evaluación. Este estado no equivale a aprobación docente.
+
+Repositorio: https://github.com/wemake3chile-sys/wemake3-coderhouse-automatizacion
