@@ -30,9 +30,13 @@ El checkpoint se exporta **inactivo**. El piloto filtra asuntos con `[WM3-M4]` y
 
 ## Entregas anteriores
 
-Las preentregas 1, 2 y 3 fueron enviadas a Coderhouse y figuran en corrección; ese estado no equivale a aprobación docente.
+La preentrega 1 figura aprobada en Coderhouse. Las preentregas 2 y 3 siguen en corrección. Comprobé esos estados el 27 de noviembre de 2026; una entrega en corrección todavía no equivale a aprobación docente.
 
 - Preentrega 1: [checkpoint1_karla_rojas.json](checkpoint1_karla_rojas.json), [documentación original](README_M1.md), [evidencias](EVIDENCIA_PRUEBAS.md) y [columnas de solicitudes](columnas_solicitudes.csv).
 - Las preentregas 2 y 3 se presentaron mediante los PDF solicitados por la plataforma. La versión 4 amplía sus circuitos de especialistas y memoria.
 
 El repositorio es público con mi autorización para compartir los entregables del curso. Los ejemplos son pruebas y no representan pedidos reales.
+
+## Revisión del 27 de noviembre de 2026
+
+Volví a revisar las conexiones, comprobé la importación del JSON público en una copia separada de n8n y completé tres contactos ficticios propios en HubSpot. La revisión reunió 31 comprobaciones aprobadas: 29 locales y dos comparaciones del archivo importado. Se detallan los ajustes que hay que revisar después de importar y se distinguen estas comprobaciones de las pruebas reales de correo en [EVIDENCIA_M4.md](EVIDENCIA_M4.md).
