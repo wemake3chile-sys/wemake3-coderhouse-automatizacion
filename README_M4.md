@@ -82,3 +82,35 @@ Los archivos mantienen las referencias de configuración necesarias para importa
 Dejé el workflow inactivo y con el filtro `[WM3-M4]`. Las pruebas reales usaron únicamente el correo del negocio; no se enviaron respuestas a clientes. Los tres correos internos fueron escenarios de prueba enviados manualmente, mientras que la salida automática del workflow se mantuvo en borradores.
 
 El control de duplicados cubre los contactos del CRM. Repetir el mismo `messageId` todavía puede generar otro borrador o aviso. No probé concurrencia, lotes de correos ni caídas de proveedores. El filtro también contempla otros asuntos y remitentes automáticos, pero la prueba real de descarte realizada fue Auto-reply.
+
+
+## Revisión adicional del 27 de noviembre de 2026
+
+Volví a revisar la entrega contra la consigna. Comprobé en n8n el estado conectado de Gmail, HubSpot y Slack. Los tres conectores mantienen `Allowed HTTP Request Domains: None`; esto no reemplaza la revisión de los permisos OAuth amplios que expliqué antes.
+
+Probé la importación del JSON desde su URL pública de GitHub en una copia separada: el grafo de 50 nodos cargó sin errores observables. Dejé esa copia de revisión sin publicar y conservé el workflow original. Esta prueba comprueba la importación; no equivale a ejecutar todas sus ramas ni a probar credenciales en otra instancia.
+
+Al comparar la exportación de esa copia con el archivo público, coincidieron los 50 nodos funcionales, sus parámetros y credenciales, y las conexiones del grafo. n8n renovó identificadores y posiciones del lienzo. La copia no retuvo explícitamente cuatro ajustes del workflow: `executionTimeout`, `callerPolicy`, `timeSavedMode` y `availableInMCP`. Antes de ejecutar una importación, hay que revisar sus ajustes y confirmar los valores del original: 180 segundos de tiempo máximo, llamadas desde workflows del mismo propietario, ahorro de tiempo en modo fijo y disponibilidad en MCP desactivada. No se afirma que todos los ajustes se importen idénticos.
+
+También creé manualmente tres contactos ficticios propios en HubSpot para completar la preparación del CRM. Usé los datos del CSV de prueba que había preparado, sin importar el archivo. No envié correos a esas direcciones.
+
+La revisión reunió **31 comprobaciones aprobadas, sin fallos**: 29 comprobaciones locales del paquete, los filtros y la normalización del correo, más dos comparaciones del archivo importado realmente en n8n. Incluyen asuntos automáticos, remitentes inválidos o múltiples, texto vacío, límites de tamaño y exclusión de adjuntos y objetos binarios. Las comprobaciones locales no consultan Gmail, HubSpot ni Slack y no acreditan nuevas ejecuciones de esos servicios.
+
+Las pruebas de correo, borradores y avisos del 26 de noviembre conservan su fecha y sus resultados originales. Las verificaciones adicionales de hoy se detallan por separado en [EVIDENCIA_M4.md](EVIDENCIA_M4.md).
+
+### Tres pruebas reales nuevas de Gmail del negocio
+
+Con autorización para probar únicamente **wemake3.chile@gmail.com**, envié manualmente tres mensajes ficticios desde y hacia esa misma cuenta. Comprobé la cuenta en Gmail, el historial de n8n y los borradores de esa casilla.
+
+| Caso del 27 de noviembre | Resultado observado |
+|---|---|
+| Registro de dos lámparas — Manager 41 | Solicitud `WM3-42`, contacto existente reutilizado, borrador y aviso; viabilidad, precio y plazo pendientes de revisión |
+| Orientación — Manager 43 | Mismo contacto, otro borrador con una guía general para reunir antecedentes y aviso, estado En recepción |
+| Out of office — Manager 45 | Solo disparador, IF inicial y descarte; salida `ignored`, sin IA, CRM, borrador ni Slack |
+
+Las tres ejecuciones fueron Succeeded. Sus duraciones en el historial fueron 33,133 s, 6,548 s y 558 ms, respectivamente. No se mezclan con los tiempos del editor, que incluyen otros pasos de la prueba.
+
+La búsqueda final en Borradores de Gmail mostró exactamente los casos 01 y 02. Los tres mensajes de entrada fueron enviados manualmente para probar el circuito; **la IA no envió respuestas**. El workflow original siguió inactivo y sin ejecuciones activas al terminar.
+
+La prueba de contacto nuevo sigue siendo la del 26 de noviembre: en la regresión del 27 se reutilizó el contacto del negocio. Esta revisión añadió Out of office real a la prueba anterior de Auto-reply. Se mantienen los límites documentados sobre otros patrones, reprocesamiento por `messageId`, concurrencia, lotes y caídas de proveedores.
+
